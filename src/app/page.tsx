@@ -1,7 +1,5 @@
-import {TaskIntro} from "@/components/organisms/TaskIntro";
+import { TaskIntro } from "@/components/organisms/TaskIntro";
 
 export default function Home() {
-    return (
-        <TaskIntro />
-    )
+  return <TaskIntro />;
 }
