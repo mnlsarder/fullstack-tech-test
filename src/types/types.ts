@@ -35,6 +35,24 @@ interface Info {
   next: number;
 }
 
+interface Resident {
+  id: string;
+}
+
+interface Location {
+  id: string;
+  name: string;
+  type: string;
+  dimension: string;
+  residents?: Resident[];
+}
+
+interface Episode {
+  id: string;
+  name: string;
+  air_date: string;
+  episode: string;
+}
 export interface Results {
   id: string;
   name: string;
@@ -42,13 +60,20 @@ export interface Results {
   species: string;
   gender: string;
   image: string;
+  origin?: Location;
+  location?: Location;
+  episode?: Episode[];
 }
 
-type Characters = {
+interface Characters {
   info: Info;
   results: Results[];
-};
+}
 
-export type GQLAllCharacters = {
+export interface AllCharactersQuery {
   characters: Characters;
-};
+}
+
+export interface SingleCharacterQuery {
+  character: Results;
+}

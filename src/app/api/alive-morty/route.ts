@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { fetchAliveMortyCharacters } from "../../services/gql";
+import { fetchAliveMortyCharacters } from "@/app/services/gql";
 import { Results } from "@/types/types";
 
 async function fetchAllAliveMorty(
