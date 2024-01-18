@@ -1,7 +1,6 @@
 import { ICharacter } from "@/types/types";
 
-const baseUrl =
-  "https://fullstack-tech-test-7a4xv6h26-mainul-sarders-projects-41a22f1b.vercel.app";
+const baseUrl = "https://fullstack-tech-test-ms.vercel.app";
 
 type APIResponse = {
   data: ICharacter;
