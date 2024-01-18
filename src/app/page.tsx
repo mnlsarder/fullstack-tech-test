@@ -1,5 +1,6 @@
 import { CharacterCard } from "@/components/organisms/CharacterCard";
 import { ICharacterCore } from "@/types/types";
+export const runtime = "edge";
 
 const baseUrl =
   "https://fullstack-tech-test-7a4xv6h26-mainul-sarders-projects-41a22f1b.vercel.app";
