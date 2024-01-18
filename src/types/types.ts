@@ -85,9 +85,7 @@ export interface EpisodeQuery {
     name: string;
     air_date: string;
     episode: string;
-    characters: {
-      id: string;
-    }[];
+    characters: Resident[];
   }[];
 }
 export interface LocationQuery {
@@ -96,8 +94,6 @@ export interface LocationQuery {
     name: string;
     type: string;
     dimension: string;
-    residents: {
-      id: string;
-    }[];
+    residents: Resident[];
   };
 }

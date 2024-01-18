@@ -5,7 +5,7 @@ import "@/app/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fullstack Tech Test",
+  title: "Rick and Morty | Character Information",
   description: "Collagerie fullstack tech test",
 };
 

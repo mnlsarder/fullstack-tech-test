@@ -1,4 +1,4 @@
-import { GraphQLClient, gql } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import AliveMortyCharacters from "@/graphql/queries/AliveMortyCharacters";
 import CharacterById from "@/graphql/queries/CharacterById";
 import EpisodeById from "@/graphql/queries/EpisodeById";
