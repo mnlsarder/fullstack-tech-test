@@ -1,7 +1,8 @@
 import { CharacterCard } from "@/components/organisms/CharacterCard";
 import { ICharacterCore } from "@/types/types";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl =
+  "fullstack-tech-test-n6f7eipgd-mainul-sarders-projects-41a22f1b.vercel.app";
 
 async function getAllCharacters() {
   const res = await fetch(`${baseUrl}/api/alive-morty`);
