@@ -3,7 +3,7 @@ import { ICharacterCore } from "@/types/types";
 
 const baseUrl = "http://localhost:3000";
 
-async function getAllCharacters() {
+export async function getAllCharacters() {
   const res = await fetch(`${baseUrl}/api/alive-morty`);
 
   if (!res.ok) throw new Error("Failed to fetch data");
@@ -14,9 +14,13 @@ async function getAllCharacters() {
 export default async function Home() {
   const { data } = await getAllCharacters();
 
+  console.log("here");
+
+  console.log(data);
+
   return (
     <main className="text-center flex flex-col items-center relative justify-start">
-      <h1 className="text-3xl w-full font-bold uppercase pt-36 pb-60 bg-slate-200 px-10 break-words">
+      <h1 className="text-3xl w-full font-bold pt-36 pb-60 bg-slate-200 px-10 break-words">
         Rick and Morty
       </h1>
 

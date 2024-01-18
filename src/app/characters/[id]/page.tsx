@@ -74,7 +74,7 @@ export default async function CharacterPage({
   return (
     <main className="text-center flex flex-col items-center justify-start md:relative">
       <div className="bg-slate-100 flex flex-col w-full gap-5 py-10 items-center md:items-start md:px-10 md:pb-20">
-        <h1 className="text-3xl font-bold uppercase">Rick and Morty</h1>
+        <h1 className="text-3xl font-bold">Rick and Morty</h1>
 
         <a href="/" className="text-xl mb-20">
           {"<"} Back to character listing
