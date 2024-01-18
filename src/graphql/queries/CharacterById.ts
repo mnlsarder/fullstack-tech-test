@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 
-const Character = gql`
+const CharacterById = gql`
   query Character($id: ID!) {
     character(id: $id) {
       id
@@ -34,4 +34,4 @@ const Character = gql`
   }
 `;
 
-export default Character;
+export default CharacterById;

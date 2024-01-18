@@ -1,31 +1,62 @@
 import { NextResponse, NextRequest } from "next/server";
-import { fetchCharacterById } from "@/services/gql";
+import {
+  fetchCharacterById,
+  fetchEpisodesById,
+  fetchLocationrById,
+} from "@/services/gql";
+import { Results, Episode, Location } from "@/types/types";
 
 type Params = {
   id: string;
 };
 
-async function formatCharacter(id: number) {
-  const result = await fetchCharacterById(id);
+type Props = {
+  character: Results;
+  episodes: Episode[];
+  location: Location;
+};
 
-  if (!result) return;
+function formatResponse({ character, episodes, location }: Props) {
+  const origin = {
+    id: character.origin.id,
+    name: character.origin.name,
+    type: character.origin.type,
+    dimension: character.origin.dimension,
+  };
+
+  const formattedLocation = {
+    id: location.id,
+    name: location.name,
+    type: location.type,
+    noOfResidents: location.residents.length,
+    dimension: location.dimension,
+  };
+
+  const formattedEpisodes = episodes.map((e: Episode) => ({
+    id: e.id,
+    name: e.name,
+    airDate: e.air_date,
+    noOfCharacters: e.characters.length,
+    episode: e.episode,
+  }));
 
   return {
-    ...result,
-    avatar: result.image,
-    origin: {
-      ...result.origin,
-      residents: result.origin?.residents?.length,
-    },
+    id: character.id,
+    name: character.name,
+    status: character.status,
+    species: character.species,
+    gender: character.gender,
+    avatar: character.image,
+    origin,
+    location: formattedLocation,
+    episodes: formattedEpisodes,
   };
 }
 
 export async function GET(req: NextRequest, context: { params: Params }) {
   const characterId = parseInt(context.params.id);
 
-  const character = await formatCharacter(characterId);
-
-  console.log(character);
+  const character = await fetchCharacterById(characterId);
 
   if (!character)
     return NextResponse.json(
@@ -35,7 +66,17 @@ export async function GET(req: NextRequest, context: { params: Params }) {
       { status: 404 }
     );
 
+  const episodeIds = character.episode?.map(({ id }) => parseInt(id));
+  const locationId = parseInt(character.location.id);
+
+  const [episodes, location] = await Promise.all([
+    fetchEpisodesById(episodeIds),
+    fetchLocationrById(locationId),
+  ]);
+
+  const data = formatResponse({ character, episodes, location });
+
   return NextResponse.json({
-    data: character,
+    data,
   });
 }

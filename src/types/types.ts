@@ -39,19 +39,20 @@ interface Resident {
   id: string;
 }
 
-interface Location {
+export interface Location {
   id: string;
   name: string;
   type: string;
   dimension: string;
-  residents?: Resident[];
+  residents: Resident[];
 }
 
-interface Episode {
+export interface Episode {
   id: string;
   name: string;
   air_date: string;
   episode: string;
+  characters: Resident[];
 }
 export interface Results {
   id: string;
@@ -60,9 +61,9 @@ export interface Results {
   species: string;
   gender: string;
   image: string;
-  origin?: Location;
-  location?: Location;
-  episode?: Episode[];
+  origin: Location;
+  location: Location;
+  episode: Episode[];
 }
 
 interface Characters {
@@ -76,4 +77,27 @@ export interface AllCharactersQuery {
 
 export interface SingleCharacterQuery {
   character: Results;
+}
+
+export interface EpisodeQuery {
+  episodesByIds: {
+    id: string;
+    name: string;
+    air_date: string;
+    episode: string;
+    characters: {
+      id: string;
+    }[];
+  }[];
+}
+export interface LocationQuery {
+  location: {
+    id: string;
+    name: string;
+    type: string;
+    dimension: string;
+    residents: {
+      id: string;
+    }[];
+  };
 }

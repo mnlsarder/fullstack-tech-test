@@ -1,7 +1,14 @@
 import { GraphQLClient, gql } from "graphql-request";
 import AliveMortyCharacters from "@/graphql/queries/AliveMortyCharacters";
-import Character from "@/graphql/queries/Character";
-import { AllCharactersQuery, SingleCharacterQuery } from "@/types/types";
+import CharacterById from "@/graphql/queries/CharacterById";
+import EpisodeById from "@/graphql/queries/EpisodeById";
+import LocationById from "@/graphql/queries/LocationById";
+import {
+  AllCharactersQuery,
+  SingleCharacterQuery,
+  EpisodeQuery,
+  LocationQuery,
+} from "@/types/types";
 
 const client = new GraphQLClient("https://rickandmortyapi.com/graphql");
 
@@ -14,9 +21,25 @@ export async function fetchAliveMortyCharacters(page?: number) {
 }
 
 export async function fetchCharacterById(id: number) {
-  const results = (await client.request(Character, {
+  const results = (await client.request(CharacterById, {
     id,
   })) as SingleCharacterQuery;
 
   return results.character;
+}
+
+export async function fetchEpisodesById(ids: number[]) {
+  const results = (await client.request(EpisodeById, {
+    ids,
+  })) as EpisodeQuery;
+
+  return results.episodesByIds;
+}
+
+export async function fetchLocationrById(id: number) {
+  const results = (await client.request(LocationById, {
+    id,
+  })) as LocationQuery;
+
+  return results.location;
 }
