@@ -1,6 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request";
-import AliveMortyCharacters from "../graphql/queries/AliveMortyCharacters";
-import Character from "../graphql/queries/Character";
+import AliveMortyCharacters from "@/graphql/queries/AliveMortyCharacters";
+import Character from "@/graphql/queries/Character";
 import { AllCharactersQuery, SingleCharacterQuery } from "@/types/types";
 
 const client = new GraphQLClient("https://rickandmortyapi.com/graphql");
