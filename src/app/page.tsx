@@ -19,10 +19,12 @@ export default async function Home() {
   const { data } = await getAllCharacters();
 
   return (
-    <main className="text-center flex flex-col items-center justify-start">
-      <h1 className="text-3xl font-bold uppercase">Collagerie tech test</h1>
+    <main className="text-center flex flex-col items-center relative justify-start">
+      <h1 className="text-3xl w-full font-bold uppercase pt-36 pb-60 bg-slate-200 px-10 break-words">
+        Rick and Morty
+      </h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-6">
+      <div className="absolute top-80 grid grid-cols-2 md:grid-cols-6 md:px-10">
         {data.map((character: ICharacterCore) => (
           <CharacterCard data={character} key={character.id} />
         ))}

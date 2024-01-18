@@ -1,4 +1,3 @@
-import { CharacterCard } from "@/components/organisms/CharacterCard";
 import { ICharacter } from "@/types/types";
 
 const baseUrl = "http://localhost:3000";
@@ -30,17 +29,22 @@ export default async function CharacterPage({
   const lastEpisode = data.episodes[data.episodes.length - 1];
 
   return (
-    <main className="text-center flex flex-col items-center justify-start">
-      <div className="bg-slate-100 flex flex-col w-full gap-5 py-10 items-center md:items-start md:px-10">
+    <main className="text-center flex flex-col items-center justify-start md:relative">
+      <div className="bg-slate-100 flex flex-col w-full gap-5 py-10 items-center md:items-start md:px-10 md:pb-20">
         <h1 className="text-3xl font-bold uppercase">Rick and Morty</h1>
 
-        <a href="/" className="text-xl">
+        <a href="/" className="text-xl mb-20">
           {"<"} Back to character listing
         </a>
 
         <div className="flex flex-col gap-7 md:flex-row">
-          <img src={data.avatar} className="rounded-full mt-5" />
-          <div className="flex flex-col self-center gap-2 md:text-start">
+          <img
+            src={data.avatar}
+            className="rounded-full mt-5 md:absolute md:top-52"
+            height={200}
+            width={200}
+          />
+          <div className="flex flex-col self-center gap-2 md:text-start md:relative md:left-60 md:top-10">
             <h1 className="text-2xl font-bold">{data.name}</h1>
             <div className="flex flex-col">
               <span>Status: {data.status}</span>
@@ -50,8 +54,8 @@ export default async function CharacterPage({
         </div>
       </div>
 
-      <div className="flex flex-col w-full py-10 gap-7 items-center md:items-start md:px-10">
-        <div className="flex flex-col text-center gap-3 md:text-start">
+      <div className="flex flex-col w-full py-12 gap-7 px-10 items-start">
+        <div className="flex flex-col text-center gap-3 w-full md:text-start">
           <h1 className="text-xl font-semibold">Location Details:</h1>
           <div className="flex flex-col">
             <span>Name: {data.location.name}</span>
@@ -60,7 +64,7 @@ export default async function CharacterPage({
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 text-center md:text-start">
+        <div className="flex flex-col gap-3 text-center w-full md:text-start">
           <h1 className="text-xl font-semibold">
             Episodes ({data.episodes.length}):
           </h1>
