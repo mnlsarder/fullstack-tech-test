@@ -3,7 +3,7 @@ import { ICharacterCore } from "@/types/types";
 
 const baseUrl = "http://localhost:3000";
 
-export async function getAllCharacters() {
+async function getAllCharacters() {
   const res = await fetch(`${baseUrl}/api/alive-morty`);
 
   if (!res.ok) throw new Error("Failed to fetch data");
