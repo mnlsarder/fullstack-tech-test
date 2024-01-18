@@ -1,9 +1,13 @@
 import { CharacterCard } from "@/components/organisms/CharacterCard";
-import { ICharacterCore } from "@/types/types";
+import { ICharacter } from "@/types/types";
 
 const baseUrl = "http://localhost:3000";
 
-async function getCharacter(id: string) {
+type APIResponse = {
+  data: ICharacter;
+};
+
+async function getCharacter(id: string): Promise<APIResponse> {
   const res = await fetch(`${baseUrl}/api/characters/${id}`, {
     headers: {
       cache: "no-cache",
@@ -21,6 +25,9 @@ export default async function CharacterPage({
   params: { id: string };
 }) {
   const { data } = await getCharacter(params.id);
+
+  const firstEpisode = data.episodes[0];
+  const lastEpisode = data.episodes[data.episodes.length - 1];
 
   return (
     <main className="text-center flex flex-col items-center justify-start">
@@ -58,9 +65,16 @@ export default async function CharacterPage({
             Episodes ({data.episodes.length}):
           </h1>
           <div className="flex flex-col">
-            <span>Name: {data.location.name}</span>
-            <span>Type: {data.location.type}</span>
-            <span>Dimension: {data.location.dimension}</span>
+            <span>First appearance: {firstEpisode.name}</span>
+            <span>First appearance air date: {firstEpisode.airDate}</span>
+            <span>
+              First appearance character count: {firstEpisode.noOfCharacters}
+            </span>
+            <span>Last appearance: {lastEpisode.name}</span>
+            <span>Last appearance air date: {lastEpisode.airDate}</span>
+            <span>
+              Last appearance character count: {lastEpisode.noOfCharacters}
+            </span>
           </div>
         </div>
       </div>
